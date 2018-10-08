@@ -3,7 +3,11 @@ import React, {
 }
 from 'react';
 import './App.css';
-
+import './Boards.jsx'
+// import Boards from './Boards.jsx';
+// import '.Header.jsx'
+import Header from './Header';
+import Boards from './Boards.jsx';
 
 
 
@@ -21,8 +25,15 @@ class App extends Component {
 
 
   render() {
-    return <div> Hello World!! </div>
-  }
+    console.log("are we rendering?")
+    return (
+      <div className="App">
+        <Header />
+        <Boards />
+      </div>
+
+    );
+}
 }
 
 // class App extends Component {

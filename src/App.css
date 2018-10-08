@@ -1,5 +1,12 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+  display: grid;
+  grid-template-columns: repeat(12, [col-start] 1fr);
+  grid-gap: 20px;
+}
+
+.App > * {
+  grid-column: col-start / span 12;
 }
 
 .App-logo {
@@ -29,4 +36,43 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+header {
+  display: grid;
+  background-color: purple;
+  color: white;
+  /* justify-items: center; */
+  align-items: center;
+  /* grid-row: 1; */
+  /* grid-column: 1/12;  */
+  /* width: auto; */
+
+
+
+}
+
+
+.Header-logo {
+  display: block;
+  margin: 0; 
+  max-height: 40px;
+  max-width: 40px;
+  grid-row: 1;
+  grid-column: 1;
+  
+ 
+  
+}
+
+.Header-title {
+  grid-row: 1;
+  grid-column: 1;
+  margin: auto;
+}
+
+.add-task-button {
+  grid-row: 1;
+  grid-column: 12/12;
+  margin: auto;
 }
