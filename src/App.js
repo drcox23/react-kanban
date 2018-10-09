@@ -11,6 +11,7 @@ import Boards from './Boards.jsx';
 
 
 
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -30,6 +31,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <Boards />
+        
       </div>
 
     );

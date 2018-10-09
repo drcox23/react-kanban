@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
+import Tasks from './components/Tasks.jsx'
+
 
 class Boards extends Component {
   constructor(props) {
@@ -7,12 +9,15 @@ class Boards extends Component {
     this.state = {
       boardsName: [
         {
+          id: 1,
           title: "In Queue"
         },
         {
+          id: 2,
           title: "In Progress"
         },
         {
+          id: 3,
           title: "Done"
         }
       ]
@@ -23,16 +28,19 @@ class Boards extends Component {
     console.log("what is the state?: ", this.state);
     return (
       <div className="Boards">
-        {this.state.boardsName.map( item => <div className={item.title}>{item.title}</div>)}
+        {this.state.boardsName.map( item => <div className={item.title} key={item.id}>{item.title}
+        <Tasks />
+        </div>)}
+        {/* <BoardTitles items={this.state.items}/> */}
       </div>
     );
   }
 }
 
-  function BoardTitles(props){
-    // console.log("how does this work?????: ", props.title)
-    return props.boardsName.map( item => <Boards key={item.id} title={item.title}/>)
-  }
+  // function BoardTitles(props){
+  //   console.log("how does this work?????: ", props)
+  //   return props.boardsName.map( item => <div className={item.title}> <Boards key={item.id} title={item.title}/></div>)
+  // }
 
 
 export default Boards;

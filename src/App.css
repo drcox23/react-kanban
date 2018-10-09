@@ -3,6 +3,7 @@
   display: grid;
   grid-template-columns: repeat(12, [col-start] 1fr);
   grid-gap: 20px;
+  background-color: gray;
 }
 
 .App > * {
@@ -86,8 +87,9 @@ header {
 }
 
 .Queue, .Progress, .Done {
-  border-left: 1px solid gray;
-  border-right: 1px solid gray;
-  height: 700px;
+  color: white;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  min-height: 94vh;
   width: 500px;
 }

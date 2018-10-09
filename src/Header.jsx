@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 
 class Header extends Component {
   // constructor(props) {
@@ -22,12 +22,10 @@ class Header extends Component {
     return (
       <header className="Header">
         <div className="Header-logo">
-        <img src={logo} alt="logo" />
+          <img src={logo} alt="logo" />
         </div>
         <div className="Header-title">KANBAN</div>
-        <div className="add-task-button" >
-          + NEW TASK
-        </div>
+        <div className="add-task-button">+ NEW TASK</div>
       </header>
     );
   }
