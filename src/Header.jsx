@@ -26,7 +26,7 @@ class Header extends Component {
         </div>
         <div className="Header-title">KANBAN</div>
         <div className="add-task-button" >
-          NEW TASK
+          + NEW TASK
         </div>
       </header>
     );

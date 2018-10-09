@@ -76,3 +76,18 @@ header {
   grid-column: 12/12;
   margin: auto;
 }
+
+.Boards {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  
+
+}
+
+.Queue, .Progress, .Done {
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  height: 700px;
+  width: 500px;
+}

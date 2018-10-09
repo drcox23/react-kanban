@@ -7,15 +7,12 @@ class Boards extends Component {
     this.state = {
       boardsName: [
         {
-          id: 1,
           title: "In Queue"
         },
         {
-          id: 2,
           title: "In Progress"
         },
         {
-          id: 3,
           title: "Done"
         }
       ]
@@ -26,16 +23,15 @@ class Boards extends Component {
     console.log("what is the state?: ", this.state);
     return (
       <div className="Boards">
-        <h1> Lets hope this renders
-        </h1>
+        {this.state.boardsName.map( item => <div className={item.title}>{item.title}</div>)}
       </div>
     );
   }
 }
 
   function BoardTitles(props){
-    console.log("how does this work?????: ", props.title)
-    return <div> {props.title}</div>
+    // console.log("how does this work?????: ", props.title)
+    return props.boardsName.map( item => <Boards key={item.id} title={item.title}/>)
   }
 
 
