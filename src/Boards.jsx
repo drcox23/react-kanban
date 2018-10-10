@@ -28,9 +28,11 @@ class Boards extends Component {
     console.log("what is the state?: ", this.state);
     return (
       <div className="Boards">
-        {this.state.boardsName.map( item => <div className={item.title} key={item.id}>{item.title}
+        {this.state.boardsName.map( item => <div className="Categories" key={item.id}>{item.title}
         <Tasks />
         </div>)}
+
+        
         {/* <BoardTitles items={this.state.items}/> */}
       </div>
     );

@@ -3,10 +3,10 @@
   display: grid;
   grid-template-columns: repeat(12, [col-start] 1fr);
   grid-gap: 20px;
-  background-color: gray;
+  
 }
 
-.App > * {
+.App>* {
   grid-column: col-start / span 12;
 }
 
@@ -34,6 +34,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -48,22 +49,17 @@ header {
   /* grid-row: 1; */
   /* grid-column: 1/12;  */
   /* width: auto; */
-
-
-
 }
 
 
 .Header-logo {
   display: block;
-  margin: 0; 
+  margin: 0;
   max-height: 40px;
   max-width: 40px;
   grid-row: 1;
   grid-column: 1;
-  
- 
-  
+
 }
 
 .Header-title {
@@ -83,13 +79,42 @@ header {
   justify-content: space-evenly;
   text-align: center;
   
-
 }
 
-.Queue, .Progress, .Done {
-  color: white;
+.Categories {
+
+  color: #5b6168;
   border-left: 1px solid black;
   border-right: 1px solid black;
   min-height: 94vh;
   width: 500px;
+ 
+}
+
+
+.Queue,
+.Progress,
+.Done {
+  text-align: center;
+  width: 300px;
+  height: 100px;
+  border: 1px solid black;
+  margin: 15px;
+  padding: 10px;
+  color: #5b6168; 
+  display: inline-block;
+  text-align: left;
+  align-content: center;
+}
+
+.Queue {
+  background-color: #fdf1dd;
+}
+
+.Progress {
+  background-color: #e5fdca;
+}
+
+.Done {
+  background-color: #f7f8fb;
 }

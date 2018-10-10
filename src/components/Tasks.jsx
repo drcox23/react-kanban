@@ -8,10 +8,6 @@ import { getItemsFromFakeXHR, addItemToFakeXHR, deleteItemByIdFromFakeXHR } from
 //   return props.tasks.map( task => <IndTasks key={task.id} title={task.title}/>)
 // }
 
-function IndTasks(props){
-  return <div>{props.title}</div>
-
-}
 
 class Tasks extends Component {
   constructor(props) {
@@ -24,9 +20,9 @@ class Tasks extends Component {
   
   componentDidMount() {
     getItemsFromFakeXHR()
-      .then( items => {
+      .then( tasks => {
         // console.log("what am i getting??? ", items)
-        this.setState({ items })
+        this.setState({ tasks })
       }, function() {
         console.log('this.state updated', this.state)
       })
@@ -38,7 +34,8 @@ class Tasks extends Component {
     return (
 
       <div>
-        <Cards items={this.state.items}/>
+        <CardList tasks={this.state.tasks}/>
+        
       </div>
 
       // <div className={this.state.status}>
@@ -47,11 +44,21 @@ class Tasks extends Component {
     )}
 }
 
-function Cards(props) {
+function CardList(props) {
   console.log("what is this???", props.tasks)
-  return props.items.map (item => 
-    <div>{item.title}</div>
-    )
+  return props.tasks.map (tasks => <Cards key={tasks.id} title={tasks.title} priority={tasks.priority} status={tasks.status} assignedTo={tasks.assignedTo}/>)
+}
+
+function Cards(props) {
+  console.log("Check me out!!!", props)
+  return <div className={props.status}>
+  {props.title}<br></br>
+  Priority: {props.priority}<br></br>
+  Assigned To: {props.assignedTo}<br></br>
+  <button>Edit</button>
+  <button>Delete</button>
+  </div>
+    
 }
 
 export default Tasks;
