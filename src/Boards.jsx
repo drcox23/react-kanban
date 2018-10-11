@@ -25,7 +25,7 @@ class Boards extends Component {
   }
 
   render() {
-    console.log("what is the state?: ", this.state);
+    // console.log("what is the state?: ", this.state);
     return (
       <div className="Boards">
         {this.state.boardsName.map( item => <div className="Categories" key={item.id}>{item.title}
