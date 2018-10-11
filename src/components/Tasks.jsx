@@ -35,7 +35,7 @@ class Tasks extends Component {
 
       <div>
         <CardList tasks={this.state.tasks}/>
-        
+        {/* <QueueCards tasks={this.state.tasks}/> */}
       </div>
 
       // <div className={this.state.status}>
@@ -49,8 +49,20 @@ function CardList(props) {
   return props.tasks.map (tasks => <Cards key={tasks.id} title={tasks.title} priority={tasks.priority} status={tasks.status} assignedTo={tasks.assignedTo}/>)
 }
 
+
+function QueueCards(props) {
+  console.log("CAAARRRDS", props.tasks)
+  return props.tasks.filter((item => {
+    return item.status === "In Queue"
+  }).map(item => {
+    return (<div className={item.status}><Cards /></div>)
+  })
+  )
+}
+
+
 function Cards(props) {
-  console.log("Check me out!!!", props)
+  // console.log("Check me out!!!", props)
   return <div className={props.status}>
   {props.title}<br></br>
   Priority: {props.priority}<br></br>
@@ -60,5 +72,8 @@ function Cards(props) {
   </div>
     
 }
+
+
+
 
 export default Tasks;
