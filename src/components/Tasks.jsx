@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../App.css";
 import { getItemsFromFakeXHR, addItemToFakeXHR, deleteItemByIdFromFakeXHR } from '../db/data.js';
+import axios from 'axios';
 
 
 // function TaskList(props){
@@ -19,6 +20,11 @@ class Tasks extends Component {
 
   
   componentDidMount() {
+    axios
+      .get('/tasks')
+      .then( tasks => {
+        console.log("tasks", tasks)
+      })
     getItemsFromFakeXHR()
       .then( tasks => {
         // console.log("what am i getting??? ", items)

@@ -7,7 +7,7 @@ const Tasks = require('./db/models/Tasks.js')
 app.use(express.static(path.join(__dirname, '../build')));
 
 app.get('/', (req, res) => {
-  res.sendFile('../build/index.html')
+  res.json('ALOHA!!!!!!')
 })
 
 app.get('/tasks', (req, res) => {
