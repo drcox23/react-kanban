@@ -6,9 +6,20 @@ const Tasks = require('./db/models/Tasks.js')
 
 app.use(express.static(path.join(__dirname, '../build')));
 
-// app.get('/', () => {
-//   res.sendFile('../build/index.html')
-// })
+app.get('/', (req, res) => {
+  res.sendFile('../build/index.html')
+})
+
+app.get('/tasks', (req, res) => {
+  Tasks
+  .fetchAll()
+  .then(items => {
+    res.json(items.serialize())
+  })
+  .catch( err => {
+    console.log('error', err)
+  })
+})
 
 
 
