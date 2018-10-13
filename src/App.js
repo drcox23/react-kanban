@@ -13,20 +13,20 @@ import Boards from './Boards.jsx';
 
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      items: []
-    }
+  // constructor(props) {
+  //   super(props)
+  //   this.state = {
+  //     items: []
+  //   }
 
-  }
+  // }
 
 
 
 
 
   render() {
-    console.log("are we rendering?")
+    // console.log("are we rendering?")
     return (
       <div className="App">
         <Header />
