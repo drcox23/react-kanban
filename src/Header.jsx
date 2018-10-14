@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import AddTasks from "./components/AddTasksModal"
+
+
 
 class Header extends Component {
-  // constructor(props) {
-  //   super(props)
-  // }
+  constructor(props) {
+    super(props)
+  }
 
   // showForm() {
   //   let addCardForm =
@@ -19,13 +22,14 @@ class Header extends Component {
   // }
 
   render() {
+    console.log("can i see the state from header", this.props)
     return (
-      <header className="Header">
-        <div className="Header-logo">
+      <header className="Header" >
+        <div className="Header-logo" >
           <img src={logo} alt="logo" />
         </div>
         <div className="Header-title">KANBAN</div>
-        <div className="add-task-button">+ NEW TASK</div>
+        <AddTasks state={this.state} />
       </header>
     );
   }

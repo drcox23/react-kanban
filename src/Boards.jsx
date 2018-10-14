@@ -6,51 +6,53 @@ import axios from "axios";
 class Boards extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      boardsName: [
-        {
-          id: 1,
-          title: "In Queue"
-        },
-        {
-          id: 2,
-          title: "In Progress"
-        },
-        {
-          id: 3,
-          title: "Done"
-        }
-      ],
-      tasks: []
-    };
+    // this.state = {
+    //   boardsName: [
+    //     {
+    //       id: 1,
+    //       title: "In Queue"
+    //     },
+    //     {
+    //       id: 2,
+    //       title: "In Progress"
+    //     },
+    //     {
+    //       id: 3,
+    //       title: "Done"
+    //     }
+    //   ],
+    //   tasks: []
+    // };
   }
 
-  componentDidMount() {
-    axios
-      .get("/tasks")
-      .then(tasks => {
-        // console.log("tasks", tasks);
-        this.setState({ tasks: tasks.data });
-      })
-      .catch(err => {
-        console.log("errors", err);
-      });
-  }
+  // componentDidMount() {
+  //   axios
+  //     .get("/tasks")
+  //     .then(tasks => {
+  //       // console.log("tasks", tasks);
+  //       this.setState({ tasks: tasks.data });
+  //     })
+  //     .catch(err => {
+  //       console.log("errors", err);
+  //     });
+  // }
 
   render() {
-    console.log("what is the state?: ", this.state);
-    const daBoard = this.state.boardsName;
+    console.log("what is the state?: ", this.props);
+    const daBoard = this.props.state.boardsName;
     console.log("CHECK CHECK", daBoard);
     return (
+      
+      // adding cards based on title of the board
       <div className="Boards">
-        {this.state.boardsName.map(item => {
+        {daBoard.map(item => {
           console.log("Board", item);
           if (item.title === "Done") {
             return (
               <div className="Categories" key={item.id}>
                 {item.title}
 
-                <DoneCards tasks={this.state.tasks} />
+                <DoneCards tasks={this.props.state.tasks} />
               </div>
             );
           } else if (item.title === "In Progress"){
@@ -58,7 +60,7 @@ class Boards extends Component {
               <div className="Categories" key={item.id}>
                 {item.title}
 
-                <ProgressCards tasks={this.state.tasks} />
+                <ProgressCards tasks={this.props.state.tasks} />
               </div>
             );
           } else if (item.title === "In Queue"){
@@ -66,7 +68,7 @@ class Boards extends Component {
               <div className="Categories" key={item.id}>
                 {item.title}
 
-                <QueueCards tasks={this.state.tasks} />
+                <QueueCards tasks={this.props.state.tasks} />
               </div>
             );
           }
@@ -99,7 +101,7 @@ function ProgressCards(props) {
 
 // filter for cards with a In Queue status
 function QueueCards(props) {
-  // console.log("CAAARRRDS", props);
+  console.log("CAAARRRDS", props);
   const filteredArr = props.tasks.filter(tasks => {
     return tasks.status === "In Queue";
   });
@@ -120,7 +122,7 @@ function QueueCards(props) {
 
 // filter for cards with a Done status
 function DoneCards(props) {
-  // console.log("PRRRROOOOPPP", props)
+  console.log("PRRRROOOOPPP", props)
   const filteredArr = props.tasks.filter(tasks => {
     return tasks.status === "Done";
   });
