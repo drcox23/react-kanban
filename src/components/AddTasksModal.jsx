@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "../App.css";
 import Modal from "react-modal";
+import { connect } from 'react-redux';
+import { addNewTask } from "../actions/actions.js"
 
 const addTaskModalStyles = {
   top: "50%",
@@ -10,6 +12,8 @@ const addTaskModalStyles = {
   marginRight: "-50%",
   transform: "translate(-50%, -50%)"
 };
+
+// const addNewTask = addNewTask
 
 // setting binding to header
 Modal.setAppElement("#root");
@@ -25,10 +29,6 @@ class AddTasks extends Component {
       status: null,
 
     };
-
-    // this.openModal = this.openModal.bind(this);
-    // this.afterOpenModal = this.afterOpenModal.bind(this);
-    // this.closeModal = this.closeModal.bind(this);
   }
 
   handleSubmit = (e) => {
@@ -113,4 +113,4 @@ class AddTasks extends Component {
   }
 }
 
-export default AddTasks;
+export default connect()(AddTasks);

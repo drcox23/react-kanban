@@ -2,51 +2,25 @@ import React, { Component } from "react";
 import "./App.css";
 import Tasks from "./components/Tasks.jsx";
 import axios from "axios";
+import { connect } from 'react-redux';
 
 class Boards extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   boardsName: [
-    //     {
-    //       id: 1,
-    //       title: "In Queue"
-    //     },
-    //     {
-    //       id: 2,
-    //       title: "In Progress"
-    //     },
-    //     {
-    //       id: 3,
-    //       title: "Done"
-    //     }
-    //   ],
-    //   tasks: []
-    // };
+
   }
 
-  // componentDidMount() {
-  //   axios
-  //     .get("/tasks")
-  //     .then(tasks => {
-  //       // console.log("tasks", tasks);
-  //       this.setState({ tasks: tasks.data });
-  //     })
-  //     .catch(err => {
-  //       console.log("errors", err);
-  //     });
-  // }
 
   render() {
     console.log("what is the state?: ", this.props);
     const daBoard = this.props.state.boardsName;
-    console.log("CHECK CHECK", daBoard);
+    // console.log("CHECK CHECK", daBoard);
     return (
       
       // adding cards based on title of the board
       <div className="Boards">
         {daBoard.map(item => {
-          console.log("Board", item);
+          // console.log("Board", item);
           if (item.title === "Done") {
             return (
               <div className="Categories" key={item.id}>
@@ -84,7 +58,7 @@ function ProgressCards(props) {
   const filteredArr = props.tasks.filter(tasks => {
     return tasks.status === "In Progress";
   });
-  console.log("In Progress FILTER", filteredArr);
+  // console.log("In Progress FILTER", filteredArr);
   return filteredArr.map(tasks => {
     return (
       <Tasks
@@ -101,11 +75,11 @@ function ProgressCards(props) {
 
 // filter for cards with a In Queue status
 function QueueCards(props) {
-  console.log("CAAARRRDS", props);
+  // console.log("CAAARRRDS", props);
   const filteredArr = props.tasks.filter(tasks => {
     return tasks.status === "In Queue";
   });
-  console.log("In Queue FILTER", filteredArr);
+  // console.log("In Queue FILTER", filteredArr);
   return filteredArr.map(tasks => {
     return (
       <Tasks
@@ -122,11 +96,11 @@ function QueueCards(props) {
 
 // filter for cards with a Done status
 function DoneCards(props) {
-  console.log("PRRRROOOOPPP", props)
+  // console.log("PRRRROOOOPPP", props)
   const filteredArr = props.tasks.filter(tasks => {
     return tasks.status === "Done";
   });
-  console.log("DONE FILTER", filteredArr);
+  // console.log("DONE FILTER", filteredArr);
   return filteredArr.map(tasks => {
     // console.log("TAAASSSSKKKS", tasks)
     return (
@@ -141,4 +115,12 @@ function DoneCards(props) {
   });
 }
 
-export default Boards;
+const mapStateToProps = state => {
+  return {
+    tasks: state,
+    // lol: 'omgIjustEnteredAPropInThisComponent'
+  }
+}
+
+
+export default connect(mapStateToProps)(Boards);

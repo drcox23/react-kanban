@@ -5,7 +5,7 @@ const path = require('path')
 const Tasks = require('./db/models/Tasks.js')
 const bodyParser = require('body-parser')
 
-app.use(bodyParser.json())
+app.use(bodyParser({extended:true}))
 
 app.use(express.static(path.join(__dirname, '../build')));
 
@@ -34,11 +34,14 @@ app.post('/new', (req, res) => {
     .forge(newTask)
     .save()
     .then(results => {
+      return Tasks.fetchAll()
+    })
+    .then(results => {
       console.log("whats the data", results)
       res.json(results.serialize())
     })
     .catch(err => {
-      res.send(err)
+      console.log("server post error ", err)
     })
 })
 

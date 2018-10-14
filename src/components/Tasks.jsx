@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../App.css";
+import { connect } from 'react-redux';
 
 
 class Tasks extends Component {
@@ -26,7 +27,7 @@ class Tasks extends Component {
 }
 
 function Cards(props) {
-  // console.log("Check me out!!!", props)
+  console.log("Check me out!!!", props)
   return (
     <div className={props.status}>
       {props.title}
@@ -41,4 +42,4 @@ function Cards(props) {
   );
 }
 
-export default Tasks;
+export default connect()(Tasks);
