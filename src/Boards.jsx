@@ -13,7 +13,7 @@ class Boards extends Component {
 
   render() {
     console.log("what is the state?: ", this.props);
-    const daBoard = this.props.state.boardsName;
+    const daBoard = this.props.boards.boardsName;
     // console.log("CHECK CHECK", daBoard);
     return (
       
@@ -26,7 +26,7 @@ class Boards extends Component {
               <div className="Categories" key={item.id}>
                 {item.title}
 
-                <DoneCards tasks={this.props.state.tasks} />
+                <DoneCards tasks={this.props.boards.tasks} />
               </div>
             );
           } else if (item.title === "In Progress"){
@@ -34,7 +34,7 @@ class Boards extends Component {
               <div className="Categories" key={item.id}>
                 {item.title}
 
-                <ProgressCards tasks={this.props.state.tasks} />
+                <ProgressCards tasks={this.props.boards.tasks} />
               </div>
             );
           } else if (item.title === "In Queue"){
@@ -42,7 +42,7 @@ class Boards extends Component {
               <div className="Categories" key={item.id}>
                 {item.title}
 
-                <QueueCards tasks={this.props.state.tasks} />
+                <QueueCards tasks={this.props.boards.tasks} />
               </div>
             );
           }
@@ -96,7 +96,7 @@ function QueueCards(props) {
 
 // filter for cards with a Done status
 function DoneCards(props) {
-  // console.log("PRRRROOOOPPP", props)
+  console.log("PRRRROOOOPPP", props)
   const filteredArr = props.tasks.filter(tasks => {
     return tasks.status === "Done";
   });
@@ -116,11 +116,13 @@ function DoneCards(props) {
 }
 
 const mapStateToProps = state => {
+  console.log("HUHHH", state)
   return {
     tasks: state,
+    // boards: state
     // lol: 'omgIjustEnteredAPropInThisComponent'
   }
 }
 
 
-export default connect(mapStateToProps)(Boards);
+export default connect(mapStateToProps)(Boards, DoneCards, QueueCards, ProgressCards);

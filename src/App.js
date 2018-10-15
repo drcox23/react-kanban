@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Header from './Header';
 import Boards from './Boards.jsx';
 import { connect } from 'react-redux';
-import { getAllTasks } from './actions/actions';
+import { getAllTasks, getAllBoards } from './actions/actions';
 
 
 
@@ -14,23 +14,23 @@ import { getAllTasks } from './actions/actions';
 class App extends Component {
   constructor(props) {
     super(props)
-    // this.state = {
-    //   boardsName: [
-    //     {
-    //       id: 1,
-    //       title: "In Queue"
-    //     },
-    //     {
-    //       id: 2,
-    //       title: "In Progress"
-    //     },
-    //     {
-    //       id: 3,
-    //       title: "Done"
-    //     }
-    //   ],
-    //   tasks: []
-    // };
+    this.state = {
+      boardsName: [
+        {
+          id: 1,
+          title: "In Queue"
+        },
+        {
+          id: 2,
+          title: "In Progress"
+        },
+        {
+          id: 3,
+          title: "Done"
+        }
+      ],
+      tasks: []
+    };
   }
 
     componentDidMount() {
@@ -44,6 +44,7 @@ class App extends Component {
       //     console.log("errors", err);
       //   });
       console.log('this.props when component mounts', this.props)
+      // this.props.dispatch(getAllBoards())
       this.props.dispatch(getAllTasks())
     }
 
@@ -66,7 +67,7 @@ class App extends Component {
     return (
       <div className="App" id="root">
         <Header state={this.state}/>
-        <Boards state={this.state}/>
+        <Boards boards={this.state}/>
         
       </div>
 

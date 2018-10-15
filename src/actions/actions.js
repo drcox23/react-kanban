@@ -2,13 +2,14 @@ import axios from 'axios';
 
 export const GET_ALL_TASKS = 'GET_ALL_TASKS';
 export const ADD_TASK = 'ADD_TASK';
+export const GET_ALL_BOARDS = 'GET_ALL_BOARDS'
 
 export const getAllTasks = () => {
   return dispatch => {
     axios
         .get("/tasks")
         .then(response => {
-          console.log("response****", response);
+          console.log("TASKS response****", response);
           dispatch({type: GET_ALL_TASKS, payload: response.data})
         })
         .catch(err => {
@@ -16,6 +17,23 @@ export const getAllTasks = () => {
         });
     }
   }
+
+export const getAllBoards = () => {
+  return dispatch => {
+    axios
+        .get("/boards")
+        .then(response => {
+          console.log("BOARDS response****", response);
+          dispatch({type: GET_ALL_BOARDS, payload: response.data})
+        })
+        .catch(err => {
+          dispatch({type: "DISPLAY_ERROR_NOTIFICATION", err});
+        });
+    }
+  }
+
+
+
 
 export const addNewTask = (task) => {
   console.log("TASSSKKK ACTION ", task)
