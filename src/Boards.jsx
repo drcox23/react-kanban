@@ -126,4 +126,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps)(Boards, DoneCards, QueueCards, ProgressCards);
+export default connect(mapStateToProps)(Boards);

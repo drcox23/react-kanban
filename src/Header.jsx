@@ -29,7 +29,7 @@ class Header extends Component {
           <img src={logo} alt="logo" />
         </div>
         <div className="Header-title">KANBAN</div>
-        <AddTasks state={this.state} />
+        <AddTasks />
       </header>
     );
   }

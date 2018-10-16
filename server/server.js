@@ -4,7 +4,7 @@ const PORT = process.env.EXPRESS_CONTAINER_PORT || 8989
 const path = require('path')
 const Tasks = require('./db/models/Tasks.js')
 const Boards = require('./db/models/Boards.js')
-// const Users = require('./db/models/Users.js')
+const Users = require('./db/models/Users.js')
 
 
 const bodyParser = require('body-parser')

@@ -10,7 +10,7 @@ class Tasks extends Component {
 
 
   render() {
-    console.log("what can i see??? ", this.props);
+    // console.log("what can i see??? ", this.props);
     return (
       <div>
         <Cards key={this.props.id}
@@ -27,7 +27,7 @@ class Tasks extends Component {
 }
 
 function Cards(props) {
-  console.log("Check me out!!!", props)
+  // console.log("Check me out!!!", props)
   return (
     <div className={props.status}>
       {props.title}

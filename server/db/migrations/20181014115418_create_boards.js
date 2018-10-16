@@ -1,6 +1,6 @@
 exports.up = function (knex, Promise) {
   return Promise.all([knex.schema.createTable('boards', (table) => {
-    table.increments();
+    table.increments('boards_id');
     table.string('title').notNullable();
   })])
 };
