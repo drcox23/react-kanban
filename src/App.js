@@ -29,7 +29,6 @@ class App extends Component {
           title: "Done"
         }
       ],
-      tasks: []
     };
   }
 
@@ -44,7 +43,7 @@ class App extends Component {
       //     console.log("errors", err);
       //   });
       console.log('this.props when component mounts', this.props)
-      // this.props.dispatch(getAllBoards())
+      this.props.dispatch(getAllBoards())
       this.props.dispatch(getAllTasks())
     }
 

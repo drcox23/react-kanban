@@ -14,6 +14,7 @@ class Boards extends Component {
   render() {
     console.log("what is the state?: ", this.props);
     const daBoard = this.props.boards.boardsName;
+    const daTask = this.props.tasks
     // console.log("CHECK CHECK", daBoard);
     return (
       
@@ -26,7 +27,7 @@ class Boards extends Component {
               <div className="Categories" key={item.id}>
                 {item.title}
 
-                <DoneCards tasks={this.props.boards.tasks} />
+                <DoneCards tasks={daTask} />
               </div>
             );
           } else if (item.title === "In Progress"){
@@ -34,7 +35,7 @@ class Boards extends Component {
               <div className="Categories" key={item.id}>
                 {item.title}
 
-                <ProgressCards tasks={this.props.boards.tasks} />
+                <ProgressCards tasks={daTask} />
               </div>
             );
           } else if (item.title === "In Queue"){
@@ -42,7 +43,7 @@ class Boards extends Component {
               <div className="Categories" key={item.id}>
                 {item.title}
 
-                <QueueCards tasks={this.props.boards.tasks} />
+                <QueueCards tasks={daTask} />
               </div>
             );
           }
@@ -75,7 +76,7 @@ function ProgressCards(props) {
 
 // filter for cards with a In Queue status
 function QueueCards(props) {
-  // console.log("CAAARRRDS", props);
+  console.log("CAAARRRDS", props);
   const filteredArr = props.tasks.filter(tasks => {
     return tasks.status === "In Queue";
   });
