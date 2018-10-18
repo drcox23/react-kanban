@@ -68,10 +68,10 @@ class App extends Component {
         <Header state={this.state}/>
         <Boards boards={this.state}/>
         
-      </div>
+      </div>  
 
     );
-}
+  }
 
 }
 

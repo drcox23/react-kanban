@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../App.css";
 import Modal from "react-modal";
 import { connect } from 'react-redux';
-import { addNewTask } from "../actions/actions.js"
+import { addNewTask, getAllTasks } from "../actions/actions.js"
 
 const addTaskModalStyles = {
   top: "50%",
@@ -13,7 +13,10 @@ const addTaskModalStyles = {
   transform: "translate(-50%, -50%)"
 };
 
-// const addNewTask = addNewTask
+const formStyle = {
+  display: "inline-block"
+};
+
 
 // setting binding to header
 Modal.setAppElement("#root");
@@ -24,22 +27,38 @@ class AddTasks extends Component {
     this.state = {
       modalIsOpen: false,
       title: null,
-      priority: null,
+      priority: "Low",
       details: null,
-      status: null,
+      status: "In Queue",
+      assignedTo_UserID: null,
+      createdBy_UserID: null,
 
     };
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log('SUBMITTED!!!!', this.state)
-    this.props.addNewTask(this.state)
+    // console.log('SUBMITTED!!!!', this.state)
+    const sendIt = {
+      title: this.state.title,
+      priority: this.state.priority,
+      details: this.state.details,
+      status: this.state.status,
+      assignedTo_UserID: this.state.assignedTo_UserID,
+      createdBy_UserID: this.state.createdBy_UserID
+    }
+    console.log("SUMBITTED DATA", sendIt)
+    addNewTask(sendIt)
+    this.setState({ modalIsOpen: false });
+    // return this.props.dispatch(getAllTasks())
+
   }
 
   handleChange = (e) => {
+    console.log("is this being called???")
     e.preventDefault()
     const { name, value } = e.target
+    // console.log("checking the change", e.target)
     this.setState({
       [name] : value
     })
@@ -69,19 +88,18 @@ class AddTasks extends Component {
           style={addTaskModalStyles}
           contentLabel="Example Modal"
         >
-          <h2 ref={subtitle => (this.subtitle = subtitle)}>Hello</h2>
-          <div>I am a modal</div>
-          <form onSubmit={this.handleSubmit}>
+          <h2 ref={subtitle => (this.subtitle = subtitle)}>Add a Task</h2>
+          <form className="addForm" style={formStyle} onSubmit={this.handleSubmit}>
             <label>
-              Title:
+              <span>Title:</span>
               <input onChange={this.handleChange} type="text" name="title"/>
             </label>
             <label>
-            <textarea rows="5" cols="30" name="details" placeholder="Details about this task" required></textarea>
+            <textarea rows="5" cols="30" name="details" type="text" placeholder="Details about this task" onChange={this.handleChange} required></textarea>
             <span>Details</span>
           </label>
             <label>
-              Priority:
+            <span>Priority:</span>
               <select onChange={this.handleChange} name="priority">
                 <option value="Low">Low</option>
                 <option value="Medium">Medium</option>
@@ -89,7 +107,7 @@ class AddTasks extends Component {
               </select>
             </label>
             <label>
-              Status:
+              <span>Status:</span>
               <select onChange={this.handleChange} name="status">
                 <option value="In Queue">In Queue</option>
                 <option value="In Progress">In Progress</option>
@@ -97,12 +115,12 @@ class AddTasks extends Component {
               </select>
             </label>
             <label>
-              Assigned To:
-              <input onChange={this.handleChange} type="text" name="assignedTo" />
+              <span>Assigned To:</span>
+              <input onChange={this.handleChange} type="interger" name="assignedTo_UserID" />
             </label>
             <label>
-              Created By:
-              <input onChange={this.handleChange} type="text" name="createdBy" />
+              <span>Created By:</span>
+              <input onChange={this.handleChange} type="integer" name="createdBy_UserID" />
             </label>
           <input type="submit" value="Submit" required />
           </form>

@@ -118,3 +118,12 @@ header {
 .Done {
   background-color: #f7f8fb;
 }
+
+.add-modal {
+  display: inline-block;
+}
+.addForm {
+  flex-flow: column nowrap;
+  justify-content: center
+
+}

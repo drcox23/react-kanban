@@ -15,8 +15,27 @@ app.use(bodyParser({
 
 app.use(express.static(path.join(__dirname, '../build')));
 
-app.get('/', (req, res) => {
-  res.json('ALOHA!!!!!!')
+// app.get('/', (req, res) => {
+//   res.json('ALOHA!!!!!!')
+// })
+
+app.post('/new', (req, res) => {
+  // console.log("more info!!!", req.body)
+  const newTask = req.body;
+  console.log("info to add:", newTask);
+  Tasks
+    .forge(newTask)
+    .save()
+    .then(results => {
+      return Tasks.fetchAll()
+    })
+    .then(results => {
+      console.log("whats the data", results)
+      res.json(results.serialize())
+    })
+    .catch(err => {
+      console.log("server post error ", err)
+    })
 })
 
 app.get('/tasks', (req, res) => {
@@ -43,24 +62,7 @@ app.get('/boards', (req, res) => {
 
 
 
-app.post('/new', (req, res) => {
-  console.log("more info!!!", req.body)
-  const newTask = req.body;
-  console.log("info to add:", newTask);
-  Tasks
-    .forge(newTask)
-    .save()
-    .then(results => {
-      return Tasks.fetchAll()
-    })
-    .then(results => {
-      console.log("whats the data", results)
-      res.json(results.serialize())
-    })
-    .catch(err => {
-      console.log("server post error ", err)
-    })
-})
+
 
 
 app.listen(PORT, () => {
