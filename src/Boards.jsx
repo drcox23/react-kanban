@@ -64,11 +64,14 @@ function ProgressCards(props) {
     return (
       <Tasks
         Cards
-        key={tasks.id}
+        key={tasks.tasks_id}
+        tasks_id={tasks.tasks_id}
         title={tasks.title}
+        details={tasks.details}
         priority={tasks.priority}
         status={tasks.status}
-        assignedTo={tasks.assignedTo}
+        assignedTo_UserID={tasks.assignedTo_UserID}
+        createdBy_UserID={tasks.createdBy_UserID} 
       />
     );
   });
@@ -76,7 +79,7 @@ function ProgressCards(props) {
 
 // filter for cards with a In Queue status
 function QueueCards(props) {
-  console.log("CAAARRRDS", props);
+  // console.log("CAAARRRDS", props);
   const filteredArr = props.tasks.filter(tasks => {
     return tasks.status === "In Queue";
   });
@@ -85,11 +88,14 @@ function QueueCards(props) {
     return (
       <Tasks
         Cards
-        key={tasks.id}
+        key={tasks.tasks_id}
+        tasks_id={tasks.tasks_id}
         title={tasks.title}
+        details={tasks.details}
         priority={tasks.priority}
         status={tasks.status}
-        assignedTo={tasks.assignedTo}
+        assignedTo_UserID={tasks.assignedTo_UserID}
+        createdBy_UserID={tasks.createdBy_UserID} 
       />
     );
   });
@@ -97,7 +103,7 @@ function QueueCards(props) {
 
 // filter for cards with a Done status
 function DoneCards(props) {
-  console.log("PRRRROOOOPPP", props)
+  // console.log("PRRRROOOOPPP", props)
   const filteredArr = props.tasks.filter(tasks => {
     return tasks.status === "Done";
   });
@@ -106,18 +112,21 @@ function DoneCards(props) {
     // console.log("TAAASSSSKKKS", tasks)
     return (
       <Tasks
-        key={tasks.id}
+        key={tasks.tasks_id}
+        tasks_id={tasks.tasks_id}
         title={tasks.title}
+        details={tasks.details}
         priority={tasks.priority}
         status={tasks.status}
-        assignedTo={tasks.assignedTo}
+        assignedTo_UserID={tasks.assignedTo_UserID}
+        createdBy_UserID={tasks.createdBy_UserID}
       />
     );
   });
 }
 
 const mapStateToProps = state => {
-  console.log("HUHHH", state)
+  console.log("map states to props", state)
   return {
     tasks: state,
     // boards: state

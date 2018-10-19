@@ -1,7 +1,8 @@
 import {
   GET_ALL_TASKS,
   ADD_TASK,
-  GET_ALL_BOARDS
+  GET_ALL_BOARDS,
+  GET_TASK_BY_ID
 } from '../actions/actions.js';
 
 
@@ -18,7 +19,10 @@ const taskReducer = (state = [], action) => {
       return action.payload
     case ADD_TASK:
       console.log("action.payload in ADD_TASKS reducer", action.payload)
-      return [...state, action.payload]
+      return action.payload
+    case GET_TASK_BY_ID:
+      console.log("payload for GET_TASK_BY_ID reducer", action.payload)
+      return action.payload
     default:
       return state
   }

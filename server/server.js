@@ -19,6 +19,7 @@ app.use(express.static(path.join(__dirname, '../build')));
 //   res.json('ALOHA!!!!!!')
 // })
 
+// adding a new task
 app.post('/new', (req, res) => {
   // console.log("more info!!!", req.body)
   const newTask = req.body;
@@ -38,6 +39,7 @@ app.post('/new', (req, res) => {
     })
 })
 
+// get all tasks
 app.get('/tasks', (req, res) => {
   Tasks
     .fetchAll()
@@ -49,6 +51,7 @@ app.get('/tasks', (req, res) => {
     })
 })
 
+// get all boards --> not currently being used.
 app.get('/boards', (req, res) => {
   Boards
     .fetchAll()
@@ -58,6 +61,25 @@ app.get('/boards', (req, res) => {
     .catch(err => {
       console.log('error', err)
     })
+})
+
+// get a task by id
+app.get('/edit/:id', (req, res) => {
+  const tasks_id = req.params.id
+  console.log("whats the params", tasks_id)
+  Tasks
+    .where({tasks_id})
+    .fetchAll()
+    .then(results => {
+      const temp = results.toJSON()
+      console.log("DA RESULTS!!!", temp)
+      const  daTask = temp[0];
+      res.json(daTask)
+    })
+    .catch(err => {
+      console.log("edit error", err)
+    })
+
 })
 
 
