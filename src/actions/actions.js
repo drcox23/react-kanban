@@ -69,27 +69,26 @@ export const getAllBoards = () => {
 //   }
 // }
 
-
-
 export const addNewTask = (task) => {
-  console.log("TASSSKKK ACTION ", task)
-  let data
-  axios
-    .post("/new", task)
-    .then(response => {
-      console.log("see the response", response.data);
-      data = response.data
-      return dispatch => {
-        console.log("ADDDDDDDDDD", data)
+  console.log("sanity")
+  return function(dispatch){
+    return axios.post("/new", task)
+      .then(response => {
+        console.log("whats the response???", response.data)
         dispatch({
           type: ADD_TASK,
-          payload: data
+          payload: response.data
         })
-      }
-    })
-    .catch(err => {
-      console.log("errors in addItem axios call ", err);
-    })
+      })
+      .catch(err => {
+        console.log("errors", err)
+        dispatch({
+          type: ADD_TASK,
+          payload: "err"
+        })
+      })
+  }
+}
   // return dispatch => {
   //   console.log("ADDDDDDDDDD", data)
   //   dispatch({
@@ -97,4 +96,3 @@ export const addNewTask = (task) => {
   //     payload: data
   //   })
   // }
-}

@@ -55,7 +55,7 @@ class AddTasks extends Component {
   }
 
   handleChange = (e) => {
-    console.log("is this being called???")
+    // console.log("is this being called???")
     e.preventDefault()
     const { name, value } = e.target
     // console.log("checking the change", e.target)
