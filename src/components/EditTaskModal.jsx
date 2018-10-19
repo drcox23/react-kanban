@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import "../App.css";
 import Modal from "react-modal";
 import { connect } from 'react-redux';
-import { editTask, getAllTasks } from "../actions/actions.js"
+import { editTask, getTaskByID } from "../actions/actions.js"
 
-const addTaskModalStyles = {
+const editTaskModalStyles = {
   top: "50%",
   left: "50%",
   right: "auto",
@@ -26,12 +26,12 @@ class EditTasks extends Component {
     super(props);
     this.state = {
       modalIsOpen: false,
-      title: null,
-      priority: "Low",
-      details: null,
-      status: "In Queue",
-      assignedTo_UserID: null,
-      createdBy_UserID: null,
+      title: this.title,
+      priority: this.priority,
+      details: this.details,
+      status: this.status,
+      assignedTo_UserID: this.assignedTo_UserID,
+      createdBy_UserID: this.createdBy_UserID,
 
     };
   }
@@ -79,13 +79,13 @@ class EditTasks extends Component {
 
   render() {
     return (
-      <div className="add-task-button">
-        <div onClick={this.openModal}>+NEW TASK</div>
+      <div className="edit-task-button">
+        <div onClick={this.openModal}></div>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
-          style={addTaskModalStyles}
+          style={editTaskModalStyles}
           contentLabel="Example Modal"
         >
           <h2 ref={subtitle => (this.subtitle = subtitle)}>Add a Task</h2>
@@ -138,4 +138,4 @@ class EditTasks extends Component {
   }
 }
 
-export default connect()(AddTasks);
+export default connect()(EditTasks);
