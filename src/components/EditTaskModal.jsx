@@ -3,6 +3,7 @@ import "../App.css";
 import Modal from "react-modal";
 import { connect } from 'react-redux';
 import { editTask, getTaskByID } from "../actions/actions.js"
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 const editTaskModalStyles = {
   top: "50%",
@@ -26,12 +27,12 @@ class EditTasks extends Component {
     super(props);
     this.state = {
       modalIsOpen: false,
-      title: this.title,
-      priority: this.priority,
-      details: this.details,
-      status: this.status,
-      assignedTo_UserID: this.assignedTo_UserID,
-      createdBy_UserID: this.createdBy_UserID,
+      title: this.props.title,
+      // priority: this.priority,
+      // details: this.details,
+      // status: this.status,
+      // assignedTo_UserID: this.assignedTo_UserID,
+      // createdBy_UserID: this.createdBy_UserID,
 
     };
   }
@@ -55,7 +56,7 @@ class EditTasks extends Component {
   }
 
   handleChange = (e) => {
-    // console.log("is this being called???")
+    console.log("is this being called???")
     e.preventDefault()
     const { name, value } = e.target
     // console.log("checking the change", e.target)
@@ -64,7 +65,8 @@ class EditTasks extends Component {
     })
   }
 
-  openModal = () => {
+  openModal = (props) => {
+    console.log("whats open", this.props)
     this.setState({ modalIsOpen: true });
   };
 
@@ -74,13 +76,16 @@ class EditTasks extends Component {
   };
 
   closeModal = () => {
+    console.log("check to see if closing")
     this.setState({ modalIsOpen: false });
   };
 
   render() {
+    console.log("what are the props?", this.props)
     return (
+      <Router>
       <div className="edit-task-button">
-        <div onClick={this.openModal}></div>
+        <div onClick={this.openModal}>Edit</div>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -88,11 +93,11 @@ class EditTasks extends Component {
           style={editTaskModalStyles}
           contentLabel="Example Modal"
         >
-          <h2 ref={subtitle => (this.subtitle = subtitle)}>Add a Task</h2>
+          <h2 ref={subtitle => (this.subtitle = subtitle)}>Edit Task</h2>
           <form className="addForm" style={formStyle} onSubmit={this.handleSubmit}>
             <label>
               <span>Title: </span>
-              <input onChange={this.handleChange} type="text" name="title"/>
+              <input onChange={this.handleChange} type="text" name="title" value={this.title}/>
             </label>
             <br />
             <label>
@@ -131,9 +136,10 @@ class EditTasks extends Component {
             <br />
           <input type="submit" value="Submit" required />
           </form>
-          <button onClick={this.closeModal}>close</button>
+          <button onClick={this.closeModal}><Link className="close-button" to='/'>Close</Link><Route path="/"/></button>
         </Modal>
       </div>
+      </Router>
     );
   }
 }

@@ -12,7 +12,7 @@ class Boards extends Component {
 
 
   render() {
-    console.log("what is the state?: ", this.props);
+    // console.log("what is the state?: ", this.props);
     const daBoard = this.props.boards.boardsName;
     const daTask = this.props.tasks
     // console.log("CHECK CHECK", daBoard);
@@ -126,7 +126,7 @@ function DoneCards(props) {
 }
 
 const mapStateToProps = state => {
-  console.log("map states to props", state)
+  // console.log("map states to props", state)
   return {
     tasks: state,
     // boards: state

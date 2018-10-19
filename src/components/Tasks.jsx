@@ -3,9 +3,11 @@ import "../App.css";
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import EditTaskModal from "./EditTaskModal";
+// import {openModal } from "./EditTaskModal"
 
 
-
+// let path = `/edit/${this.props.tasks_id}`
+// console.log=("will setting the path this way work?", path)
 
 class Tasks extends Component {
   constructor(props) {
@@ -35,18 +37,18 @@ class Tasks extends Component {
 }
 
 function Cards(props) {
-  // console.log("Check me out!!!", props)
+  console.log("Check me out!!!", props)
 
   return (
     <Router>
-    <div className={props.status} key={props.task_id}>
+    <div className={props.status}>
       {props.title}
       <br />
       Priority: {props.priority}
       <br />
       Assigned To: {props.assignedTo}
       <br />
-      <button><Link className="edit-button" to="/edit/">Edit </Link><Route path="${/edit/:id}" component={ () => <EditTaskModal state={props}/>}/>
+      <button><Link className="edit-button" to={`/edit/${props.tasks_id}`}><EditTaskModal /> </Link><Route path="/edit/:id" component={ () => <EditTaskModal task={props}/>}/>
       </button>
       <button>Delete</button>
 

@@ -22,7 +22,7 @@ class Header extends Component {
   // }
 
   render() {
-    console.log("can i see the state from header", this.props)
+    // console.log("can i see the state from header", this.props)
     return (
       <header className="Header" >
         <div className="Header-logo" >

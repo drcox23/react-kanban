@@ -67,7 +67,7 @@ export const getTaskByID = () => {
 
 
 export const editTask = (task) => {
-  console.log("EDIT CTION ", task)
+  console.log("EDIT ACTION ", task)
   let data
   return dispatch => {
   axios
