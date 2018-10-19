@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../App.css";
 import Modal from "react-modal";
 import { connect } from 'react-redux';
-import { addNewTask, getAllTasks } from "../actions/actions.js"
+import { editTask, getAllTasks } from "../actions/actions.js"
 
 const addTaskModalStyles = {
   top: "50%",
@@ -21,7 +21,7 @@ const formStyle = {
 // setting binding to header
 Modal.setAppElement("#root");
 
-class AddTasks extends Component {
+class EditTasks extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -48,7 +48,7 @@ class AddTasks extends Component {
       createdBy_UserID: this.state.createdBy_UserID
     }
     console.log("SUMBITTED DATA", sendIt)
-    this.props.dispatch(addNewTask(sendIt))
+    this.props.dispatch(editTask(sendIt))
     this.setState({ modalIsOpen: false });
     // return this.props.dispatch(getAllTasks())
 

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import "../App.css";
 import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+
 
 
 class Tasks extends Component {
@@ -29,6 +32,7 @@ class Tasks extends Component {
 function Cards(props) {
   // console.log("Check me out!!!", props)
   return (
+    <Router>
     <div className={props.status}>
       {props.title}
       <br />
@@ -36,9 +40,14 @@ function Cards(props) {
       <br />
       Assigned To: {props.assignedTo}
       <br />
-      <button>Edit</button>
+      <button><Link className="edit-button" to="/edit/123">Edit </Link><Route path="/edit/:id" component={() => "hello"} />
+      </button>
       <button>Delete</button>
+
+      
+
     </div>
+    </Router>
   );
 }
 
